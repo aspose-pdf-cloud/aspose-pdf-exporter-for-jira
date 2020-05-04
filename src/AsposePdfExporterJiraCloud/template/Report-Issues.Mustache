@@ -1,0 +1,561 @@
+﻿Format: A4
+
+DefaultFont:
+  Name: 'Arial'
+  Size: 12
+  Style: Regular
+Content:
+{{#issues}}
+- Page:
+  - Text: '{{issueType}} {{issueName}}'
+    Location:
+      Left: 0
+      Top: 10
+      Right: -1
+      Bottom: 60
+    HorizontalAlignment: Center
+    VerticalAlignment: Center
+    Font:
+      Name: 'Arial'
+      Size: 24
+      Style: BoldItalic
+{{#issueQrImageVisible}}
+  - Url: {{issueQrImage}}
+    Location:
+      Left: -190
+      Top: 60
+      Right: -90
+      Bottom: 140
+{{/issueQrImageVisible}}
+  - Table: 1
+    ColumnWidths: ['140', '140', '140', '140']
+    Border:
+      Right:
+        Color: black
+        LineWidth: 0.1
+      Left:
+        Color: black
+        LineWidth: 0.1
+      Top:
+        Color: black
+        LineWidth: 0.1
+      Bottom:
+        Color: black
+        LineWidth: 0.1
+    DefaultContentMargin:
+        Left: 2
+        Top: 2
+#    DefaultContentHorizontalAlignment: Center
+#    DefaultContentVerticalAlignment: None
+    Rows:
+      - Cells:
+        - Text: 'Summary'
+          ColSpan: 2
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Reporter'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: ''
+          RowSpan: 4
+          Border:
+            All:
+              Color: white
+      - Cells:
+        - Text: '{{summary}}'
+          ColSpan: 2
+          RowSpan: 3
+          HorizontalAlignment: Left
+          VerticalAlignment: Top
+          Border:
+            Top:
+              Color: white
+        - Text: '{{reporter}}'
+          Border:
+            Top:
+              Color: white
+      - Cells:
+        - Text: 'Assignee'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+      - Cells:
+        - Text: '{{assignee}}'
+          Border:
+            Top:
+              Color: white
+# Status, estimate, time spent
+      - Cells:
+        - Text: 'Status'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Estimate'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Time Spent'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+      - Cells:
+        - Text: '{{status}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{estimate}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{timespent}}'
+          Border:
+            Top:
+              Color: white
+
+# Resolution, project, priority, type
+      - Cells:
+        - Text: 'Resolution'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Project'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Priority'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Epic'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+      - Cells:
+        - Text: '{{resolution}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{projectName}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{priority}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{epicLink}}'
+          Border:
+            Top:
+              Color: white
+
+# Resolution date, created, updated, due
+      - Cells:
+        - Text: 'Resolution date'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Created'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Updated'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+        - Text: 'Due Date'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          Margin:
+            Bottom: 3
+      - Cells:
+        - Text: '{{resolutiondate}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{created}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{updated}}'
+          Border:
+            Top:
+              Color: white
+        - Text: '{{duedate}}'
+          Border:
+            Top:
+              Color: white
+
+# -= Details =-
+      - Cells:
+        - Text: 'Details'
+          HorizontalAlignment: Center
+          ColSpan: 4
+          Border:
+            All:
+              Color: white
+          Margin:
+            Top: 5
+            Bottom: 5
+          Font:
+            Size: 14
+            Style: Bold
+{{#detailsLines.NotEmpty}}
+      - Cells:
+        - Text: 'Description'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+          ColSpan: 4
+      - Cells:
+        - TextLines:
+{{#detailsLines.Value}}
+          - '{{.}}'
+{{/detailsLines.Value}}
+          ColSpan: 4
+          Border:
+            Top:
+              Color: white
+{{/detailsLines.NotEmpty}}
+{{^issueQrImageVisible}}
+      - Cells:
+        - Text: 'Issue Link'
+          Font:
+            Style: Bold
+        - Text: '{{issueLink}}'
+          ColSpan: 3
+{{/issueQrImageVisible}}
+{{#issueLabelsList.NotEmpty}}
+      - Cells:
+        - Text: 'Labels'
+          Font:
+            Style: Bold
+        - TextLines:
+{{#issueLabelsList.Value}}
+          - '{{.}}'
+{{/issueLabelsList.Value}}
+          ColSpan: 3
+{{/issueLabelsList.NotEmpty}}
+
+{{#issueFixVersionsList.NotEmpty}}
+      - Cells:
+        - Text: 'Fix Versions'
+          Font:
+            Style: Bold
+        - TextLines:
+{{#issueFixVersionsList.Value}}
+          - '{{.}}'
+{{/issueFixVersionsList.Value}}
+          ColSpan: 3
+{{/issueFixVersionsList.NotEmpty}}
+
+{{#issueComponentsList.NotEmpty}}
+      - Cells:
+        - Text: 'Components'
+          Font:
+            Style: Bold
+        - TextLines:
+{{#issueComponentsList.Value}}
+          - '{{.}}'
+{{/issueComponentsList.Value}}
+          ColSpan: 3
+{{/issueComponentsList.NotEmpty}}
+# -= Linked tasks =-
+{{#issueLinksNotEmpty}}
+      - Cells:
+        - Text: 'Links'
+          HorizontalAlignment: Center
+          ColSpan: 4
+          Border:
+            All:
+              Color: white
+          Margin:
+            Top: 5
+            Bottom: 5
+          Font:
+            Size: 14
+            Style: Bold
+      - Cells:
+        - Text: 'Type'
+          Font:
+            Style: Bold
+        - Text: 'Name'
+          Font:
+            Style: Bold
+        - Text: 'Status'
+          Font:
+            Style: Bold
+        - Text: 'Summary'
+          Font:
+            Style: Bold
+{{/issueLinksNotEmpty}}
+{{#issueLinks}}
+      - Cells:
+        - Text: '{{linkType}}'
+        - Text: '{{linkedIssueName}}'
+        - Text: '{{linkedIssueStatus}}'
+        - Text: '{{linkedIssueSummary}}'
+{{/issueLinks}}
+
+# -= Subtasks =-
+{{#subtasksNotEmpty}}
+      - Cells:
+        - Text: '{{subtasksName}}'
+          HorizontalAlignment: Center
+          ColSpan: 4
+          Border:
+            All:
+              Color: white
+          Margin:
+            Top: 3
+            Bottom: 3
+          Font:
+            Size: 14
+            Style: Bold
+      - Cells:
+        - Text: 'Name'
+          Font:
+            Style: Bold
+        - Text: 'Status'
+          Font:
+            Style: Bold
+        - Text: 'Summary'
+          ColSpan: 2
+          Font:
+            Style: Bold
+{{/subtasksNotEmpty}}
+{{#subtasks}}
+      - Cells:
+        - Text: '{{subtaskIssueName}}'
+        - Text: '{{subtaskStatus}}'
+        - Text: '{{subtaskSummary}}'
+          ColSpan: 2
+{{/subtasks}}
+# -= Comments =-
+{{#commentsNotEmpty}}
+      - Cells:
+        - Text: 'Comments'
+          HorizontalAlignment: Center
+          ColSpan: 4
+          Border:
+            All:
+              Color: white
+          Margin:
+            Top: 5
+            Bottom: 5
+          Font:
+            Size: 14
+            Style: Bold
+{{/commentsNotEmpty}}
+{{#comments}}
+      - Cells:
+        - Text: 'Date'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+            Right:
+              Color: white
+        - Text: '{{commentCreated}}'
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+            Right:
+              Color: white
+        - Text: 'Author'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+            Right:
+              Color: white
+        - Text: '{{commentAuthor}}'
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+{{#commentLines.NotEmpty}}
+      - Cells:
+        - Text: ''
+          Font:
+            Style: Bold
+          ColSpan: 4
+          Border:
+            Top:
+              Color: white
+            Bottom:
+              Color: white
+      - Cells:
+        - TextLines:
+{{#commentLines.Value}}
+          - '{{.}}'
+{{/commentLines.Value}}
+          ColSpan: 4
+          Border:
+            Top:
+              Color: white
+{{/commentLines.NotEmpty}}
+{{/comments}}
+
+# -= Worklog =-
+{{#worklogsNotEmpty}}
+      - Cells:
+        - Text: 'Worklog'
+          HorizontalAlignment: Center
+          ColSpan: 4
+          Border:
+            All:
+              Color: white
+          Margin:
+            Top: 5
+            Bottom: 5
+          Font:
+            Size: 14
+            Style: Bold
+{{/worklogsNotEmpty}}
+{{#worklogs}}
+      - Cells:
+        - Text: 'Started'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+            Right:
+              Color: white
+        - Text: '{{worklogStarted}}'
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+            Right:
+              Color: white
+        - Text: 'Spent time'
+          Font:
+            Style: Bold
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+            Right:
+              Color: white
+        - Text: '{{worklogTimeSpent}}'
+          Border:
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+      - Cells:
+        - Text: 'Author'
+          Font:
+            Style: Bold
+          Border:
+            Top:
+              Color: white
+            Bottom:
+              Color: white
+            Right:
+              Color: white
+        - Text: '{{worklogAuthor}}'
+          Border:
+            All:
+              Color: white
+        - Text: ''
+          Font:
+            Style: Bold
+          Border:
+            All:
+              Color: white
+        - Text: ''
+          Border:
+            Top:
+              Color: white
+            Bottom:
+              Color: white
+            Left:
+              Color: white
+      - Cells:
+{{#worklogCommentLines.Empty}}
+        - Text: ''
+{{/worklogCommentLines.Empty}}
+{{#worklogCommentLines.NotEmpty}}
+        - TextLines:
+{{#worklogCommentLines.Value}}
+          - '{{.}}'
+{{/worklogCommentLines.Value}}
+          ColSpan: 4
+          Border:
+            Top:
+              Color: white
+{{/worklogCommentLines.NotEmpty}}
+{{/worklogs}}
+
+
+{{/issues}}

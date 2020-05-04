@@ -1,0 +1,94 @@
+{
+  "key": "com.aspose.pdf.exporter{{CustomTag}}",
+  "name": "Aspose.PDF Exporter{{CustomTag}}",
+  "description": "Export issues to PDF format{{CustomTag}}",
+  "baseUrl": "{{BaseAppUrl}}",
+  "links": {
+    "self": "{{BaseAppUrl}}/atlassian-connect.json",
+    "documentation": "{{AppDocumentation}}",
+    "homepage": "{{AppHomepage}}"
+  },
+  "vendor": {
+    "name": "Aspose, Pty.",
+    "url": "https://aspose.com"
+  },
+  "scopes": [
+    "read"
+  ],
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/app/callback/installed",
+    "uninstalled": "/app/callback/uninstalled",
+    "enabled": "/app/callback/enabled",
+    "disabled": "/app/callback/disabled"
+  },
+  "apiVersion": 1,
+  "modules": {
+    "webItems": [
+      {
+        "location": "jira.navigator.pluggable.items",
+        "weight": 200,
+        "styleClasses": [
+          "webitem",
+          "system-present-webitem"
+        ],
+        "url": "/app/ExporterContentPane",
+        "context": "addon",
+        "target": {
+          "type": "dialog",
+          "options": {
+            "header": {
+              "value": "Aspose.PDF Exporter{{CustomTag}}"
+            },
+            "height": "480px",
+            "width": "640px",
+            "chrome": false
+          }
+        },
+        "tooltip": {
+          "value": "Export to PDF{{CustomTag}}"
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/icon/export-pdf-16-red.png"
+        },
+        "name": {
+          "value": "Export to PDF{{CustomTag}}"
+        },
+        "key": "aspose-pdf-export-widget{{CustomTag}}"
+      },
+      {
+        "location": "jira.issue.tools",
+        "weight": 200,
+        "url": "/app/ExporterContentPane?issueId={issue.id}&issueKey={issue.key}",
+        "context": "addon",
+        "target": {
+          "type": "dialog",
+          "options": {
+            "header": {
+              "value": "Aspose.PDF Exporter{{CustomTag}}"
+            },
+            "height": "480px",
+            "width": "640px",
+            "chrome": false
+          }
+        },
+        "tooltip": {
+          "value": "Export to PDF{{CustomTag}}"
+        },
+        "icon": {
+          "width": 16,
+          "height": 16,
+          "url": "/icon/export-pdf-16-red.png"
+        },
+        "name": {
+          "value": "Export to PDF{{CustomTag}}"
+        },
+        "key": "aspose-pdf-export-issue{{CustomTag}}"
+      }
+    ]
+  }
+}

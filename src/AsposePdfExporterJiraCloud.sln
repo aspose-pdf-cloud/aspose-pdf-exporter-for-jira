@@ -1,0 +1,106 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsposePdfExporterJiraCloud", "AsposePdfExporterJiraCloud\AsposePdfExporterJiraCloud.csproj", "{C3CC075E-D6F5-4D3A-A6E2-DDCA7049D494}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppCommon", "modules\application-services\src\AppCommon\AppCommon.csproj", "{79CF178E-C2DE-4AE9-BF68-B595F46C6B61}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppMiddleware", "modules\application-services\src\AppMiddleware\AppMiddleware.csproj", "{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfigurationExpression", "modules\application-services\src\ConfigurationExpression\ConfigurationExpression.csproj", "{1EC3A190-BF79-4E68-9BFF-62FFD00D768C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticsearchLogging", "modules\application-services\src\ElasticsearchLogging\ElasticsearchLogging.csproj", "{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateExporter", "modules\application-services\src\TemplateExporter\TemplateExporter.csproj", "{75D578BD-B4B7-4A51-9F30-510A32B85010}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfExporter", "modules\application-services\src\PdfExporter\PdfExporter.csproj", "{7D515379-4238-4E1B-A732-C11F8B9737B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atlassian.Connect", "modules\application-services\src\Atlassian.Connect\Atlassian.Connect.csproj", "{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsposePdfExporterJiraCloud.Tests", "AsposePdfExporterJiraCloud.Tests\AsposePdfExporterJiraCloud.Tests.csproj", "{B7C723B1-0564-437B-8A5A-A165128BB9A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{024EFBA6-DBEF-4549-AB93-99B363810DCC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Atlassian.Connect.Tests", "modules\application-services\src\Tests\Atlassian.Connect.Tests\Atlassian.Connect.Tests.csproj", "{89C8B114-F28D-4394-B38F-4A2BFFC665D4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AsposePdfExporterJiraCloud.IntegrationTests", "AsposePdfExporterJiraCloud.IntegrationTests\AsposePdfExporterJiraCloud.IntegrationTests.csproj", "{185AD87B-64D3-48D3-AE12-788A6C0C1D19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PdfExporter.Tests", "modules\application-services\src\Tests\PdfExporter.Tests\PdfExporter.Tests.csproj", "{152381B4-5FC6-41F9-906A-A0589C6DF637}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3CC075E-D6F5-4D3A-A6E2-DDCA7049D494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3CC075E-D6F5-4D3A-A6E2-DDCA7049D494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3CC075E-D6F5-4D3A-A6E2-DDCA7049D494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3CC075E-D6F5-4D3A-A6E2-DDCA7049D494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79CF178E-C2DE-4AE9-BF68-B595F46C6B61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79CF178E-C2DE-4AE9-BF68-B595F46C6B61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79CF178E-C2DE-4AE9-BF68-B595F46C6B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79CF178E-C2DE-4AE9-BF68-B595F46C6B61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EC3A190-BF79-4E68-9BFF-62FFD00D768C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EC3A190-BF79-4E68-9BFF-62FFD00D768C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EC3A190-BF79-4E68-9BFF-62FFD00D768C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EC3A190-BF79-4E68-9BFF-62FFD00D768C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75D578BD-B4B7-4A51-9F30-510A32B85010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75D578BD-B4B7-4A51-9F30-510A32B85010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75D578BD-B4B7-4A51-9F30-510A32B85010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75D578BD-B4B7-4A51-9F30-510A32B85010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7D515379-4238-4E1B-A732-C11F8B9737B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D515379-4238-4E1B-A732-C11F8B9737B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D515379-4238-4E1B-A732-C11F8B9737B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D515379-4238-4E1B-A732-C11F8B9737B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7C723B1-0564-437B-8A5A-A165128BB9A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7C723B1-0564-437B-8A5A-A165128BB9A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7C723B1-0564-437B-8A5A-A165128BB9A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7C723B1-0564-437B-8A5A-A165128BB9A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89C8B114-F28D-4394-B38F-4A2BFFC665D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89C8B114-F28D-4394-B38F-4A2BFFC665D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89C8B114-F28D-4394-B38F-4A2BFFC665D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89C8B114-F28D-4394-B38F-4A2BFFC665D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{185AD87B-64D3-48D3-AE12-788A6C0C1D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{185AD87B-64D3-48D3-AE12-788A6C0C1D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{185AD87B-64D3-48D3-AE12-788A6C0C1D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{185AD87B-64D3-48D3-AE12-788A6C0C1D19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{152381B4-5FC6-41F9-906A-A0589C6DF637}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{152381B4-5FC6-41F9-906A-A0589C6DF637}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{152381B4-5FC6-41F9-906A-A0589C6DF637}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{152381B4-5FC6-41F9-906A-A0589C6DF637}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{79CF178E-C2DE-4AE9-BF68-B595F46C6B61} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{76DF1441-86EF-4EA6-B1F8-00E7A0EDE547} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{1EC3A190-BF79-4E68-9BFF-62FFD00D768C} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{65BFAAD7-EFF9-4DD5-95A9-D6ECFBC8E77F} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{75D578BD-B4B7-4A51-9F30-510A32B85010} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{7D515379-4238-4E1B-A732-C11F8B9737B5} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{50B7A2BB-E7C5-4E53-B3A5-0AA7FD2B222F} = {0BF52B88-5EDF-4A70-8F6A-7DBA28F09830}
+		{89C8B114-F28D-4394-B38F-4A2BFFC665D4} = {024EFBA6-DBEF-4549-AB93-99B363810DCC}
+		{152381B4-5FC6-41F9-906A-A0589C6DF637} = {024EFBA6-DBEF-4549-AB93-99B363810DCC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6FB1E857-D3F6-48DE-9F64-4392398455DD}
+	EndGlobalSection
+EndGlobal

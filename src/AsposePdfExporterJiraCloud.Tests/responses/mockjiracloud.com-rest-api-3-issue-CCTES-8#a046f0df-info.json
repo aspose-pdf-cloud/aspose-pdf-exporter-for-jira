@@ -1,0 +1,107 @@
+{
+  "RequestUri": "https://mockjiracloud.com/rest/api/3/issue/CCTES-8",
+  "RequestDataFile": null,
+  "ResponseDataFile": "mockjiracloud.com-rest-api-3-issue-CCTES-8#a046f0df-responsedata.txt",
+  "RequestHeaders": [
+    {
+      "Key": "Authorization",
+      "Value": [
+        "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb20uYXNwb3NlLnBkZi5leHBvcnRlci1tYXh4IiwiaWF0IjoxNTg3MDg3OTAxLCJleHAiOjE1ODcwODgyMDEsInFzaCI6ImZhOTcyOGNlYTYzZmE4MDgzZDdkM2I0OGE3ZWUyMjliYTZkMzk4NDlhNGRmNGI0YzcwYTYwNzlkOWZmMjU3NTIiLCJzdWIiOiJiY2JkMzk5YS0zODUwLTNlMmMtOTVjMS1jOWZmNWRmMzVkMDUifQ._UN0EOlU0v56agfB0FZeaJ2ArURsH4LjSixO5Unl6vk"
+      ]
+    },
+    {
+      "Key": "Request-Id",
+      "Value": [
+        "|104a33a6-401fd0299327fa7b.6."
+      ]
+    }
+  ],
+  "ResponseHeaders": [
+    {
+      "Key": "Server",
+      "Value": [
+        "AtlassianProxy/1.15.8.1"
+      ]
+    },
+    {
+      "Key": "Vary",
+      "Value": [
+        "Accept-Encoding"
+      ]
+    },
+    {
+      "Key": "Cache-Control",
+      "Value": [
+        "no-store, no-transform, no-cache"
+      ]
+    },
+    {
+      "Key": "Strict-Transport-Security",
+      "Value": [
+        "max-age=315360000; includeSubDomains; preload"
+      ]
+    },
+    {
+      "Key": "Date",
+      "Value": [
+        "Fri, 17 Apr 2020 01:45:01 GMT"
+      ]
+    },
+    {
+      "Key": "ATL-TraceId",
+      "Value": [
+        "0a0fc7be12378a45"
+      ]
+    },
+    {
+      "Key": "X-AREQUESTID",
+      "Value": [
+        "61d19d89-397d-4be6-9666-330eacb3e723"
+      ]
+    },
+    {
+      "Key": "X-AACCOUNTID",
+      "Value": [
+        "5dee34722c44a60edee170a6"
+      ]
+    },
+    {
+      "Key": "X-XSS-Protection",
+      "Value": [
+        "1; mode=block"
+      ]
+    },
+    {
+      "Key": "Transfer-Encoding",
+      "Value": [
+        "chunked"
+      ]
+    },
+    {
+      "Key": "Timing-Allow-Origin",
+      "Value": [
+        "*"
+      ]
+    },
+    {
+      "Key": "X-Content-Type-Options",
+      "Value": [
+        "nosniff"
+      ]
+    },
+    {
+      "Key": "Connection",
+      "Value": [
+        "keep-alive"
+      ]
+    },
+    {
+      "Key": "Expect-CT",
+      "Value": [
+        "report-uri=\"https://web-security-reports.services.atlassian.com/expect-ct-report/global-proxy\", enforce, max-age=86400"
+      ]
+    }
+  ],
+  "Date": "2020-04-17T04:45:02.0207335+03:00",
+  "Method": "GET"
+}

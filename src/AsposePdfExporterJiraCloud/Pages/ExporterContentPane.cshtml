@@ -1,0 +1,211 @@
+﻿@page
+@model Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter.Pages.ExporterContentPaneModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- External dependencies -->
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@@atlassian/aui@@8.6.0/dist/aui/aui-prototyping.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
+    <script src="https://unpkg.com/@@atlassian/aui@@8.6.0/dist/aui/aui-prototyping.js"></script>
+    <script src="https://connect-cdn.atl-paas.net/all.js"></script>
+    <script>
+        var isErrorOccured = @Json.Serialize(Model.IsErrorOccured);
+        var isSingleMode = @Json.Serialize(Model.SingleMode);
+        var exportToken = '@Model.ExportToken';
+        var lastFile;
+
+        async function getJql() {
+            return new Promise((resolve, reject) =>
+                AP.getLocation(function (location) {
+                    var url = new URL(location);
+                    var urlParams = new URLSearchParams(url.search);
+                    resolve(urlParams.get('jql'));
+                })
+            );
+        }
+
+        async function APRequestAsync(url, data, method = 'GET') {
+            return new Promise((resolve, reject) =>
+                AP.request({
+                    url: url,
+                    type: method,
+                    data: data,
+                    success: function(response){
+                        resolve(response);
+                    },
+                    error: function (response) {
+                        reject(response);
+                    }
+                })
+            );
+        }
+
+        async function issues() {
+            return isSingleMode ? ['@Model.SingleIssueKey'] : JSON.parse(await APRequestAsync('/rest/api/3/search', { jql: await getJql(), fields: 'key' })).issues.map(i => i.key);
+        }
+
+        function getDownLink() {
+            var lastFile = JSON.parse(sessionStorage.getItem('lastFile'));
+            return lastFile.downloadlink;
+        }
+
+        function parseError(resultError) {
+            var errorInfo = '';
+            var messageErrorText = "General error";
+            if (resultError.hasOwnProperty('request_id'))
+                errorInfo += `<li>Request Identifier: <b>${resultError.request_id}</b></li>`;
+            if (resultError.hasOwnProperty('error')) {
+                messageErrorText = resultError.error;
+                //errorInfo += `<li>Error: <b>${error.error}</b></li>`;
+            }
+            if (resultError.hasOwnProperty('error_description'))
+                errorInfo += `<li>Error Description: <b>${resultError.error_description}</b></li>`;
+            if (resultError.hasOwnProperty('date'))
+                errorInfo += `<li>Date: <b>${resultError.date}</b></li>`;
+            if (resultError.hasOwnProperty('error_result') && resultError.error_result && 0 !== resultError.error_result.length)
+                errorInfo += `<li><a href='${resultError.error_result}'> Download</a> error data. You can send this file to the customer support to help resolve your issue. Please note that error data contains sensitive information</li>`;
+            return [messageErrorText, `<p> Please contact <a href='mailto:@Model.Support'>@Model.Support</a> and provide following information:</p>${errorInfo}`];
+        }
+
+        function body_onload() {
+            if (isErrorOccured) {
+                var resultError = @Html.Raw(Json.Serialize(@Model.ErrorInfo));
+                resultError.date = new Date();
+                var errInfo = parseError(resultError);
+                AJS.$("#button-export,#messageExport,#messageExporting").toggleClass("hidden");
+                AJS.$("#messageExporting,#messageError").toggleClass("hidden");
+                AJS.$("#messageErrorText").text(errInfo[0]);
+                AJS.messages.info("#panelContent", {
+                    title: 'Solution',
+                    body: errInfo[1],
+                    closeable: true
+                });
+            }
+            AJS.$(document).on('click', '#button-temp', async function () {
+            });
+            AJS.$(document).on('click', '#button-export', async function () {
+                var that = this;
+                that.busy();
+                AJS.$("#button-export,#messageExport,#messageExporting").toggleClass("hidden");
+                AJS.$.ajax({
+                    url: `@Model.ExportActionPath?jwt=${exportToken}`,
+                    type: "POST",
+                    data: { issues: await issues(), includeqr: AJS.$("#generateBarcode").prop('checked') },
+                    success: function (result) {
+                        sessionStorage.setItem('lastFile', JSON.stringify(result));
+                        lastFile = result;
+                        AJS.$("#messageExporting,#messageDone,#button-download").toggleClass("hidden");
+                        AJS.$("#downloadLink").attr("href", result.downloadlink);
+                        AJS.$("#shareTime").text(result.expText);
+                        that.idle();
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        AJS.$("#messageExporting,#messageError").toggleClass("hidden");
+                        var resultError = xhr.responseJSON;
+                        resultError.date = new Date();
+                        var errInfo = parseError(resultError);
+                        if (401 === xhr.status) {
+                            errInfo[0] = "Token validation error";
+                            errInfo[1] = `<p> Please reopen export dialog and try again. If error continues to be indicated contact <a href='mailto:@Model.Support'>@Model.Support</a> and provide following information:</p>${errInfo[1]}`;
+                        }
+                        AJS.$("#messageErrorText").text(errInfo[0]);
+                        AJS.messages.info("#panelContent", {
+                            title: 'Solution',
+                            body: errInfo[1],
+                            closeable: true
+                        });
+                        that.idle();
+                    }
+                });
+            });
+            AJS.$(document).on('click', '#button-download', async function () {
+                window.location = lastFile.downloadlink;
+            });
+            AJS.$(document).on('click', '#button-close', function () {
+                AP.dialog.close();
+            });
+        }
+    </script>
+
+<style>
+.footer {
+  position: fixed;
+  left: 10px;
+  bottom: 0;
+  width: 100%;
+  color: gray;
+  text-align: left;
+}</style>
+
+</head>
+<body onload="body_onload()" >
+    <section id="content" class="ac-content" style="z-index: 20;">
+        <header class="aui-page-header">
+            <div class="aui-page-header-inner">
+
+                <div class="aui-page-header-main" style="display: flex;align-items: center;">
+                    <img src="~/icon/aspose_pdf-min.png" height="32" width="32" style="margin-right: 25px;" />
+                    <h1>Export @Html.Raw(Model.IssuesText) to PDF using Aspose.PDF Exporter</h1>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="aui-page-panel">
+            <div class="aui-page-panel-inner">
+                <section class="aui-page-panel-content" id="panelContent">
+                    <div id="messageExport">
+                        <h3>Export issues with sub-tasks, comments, worklogs to the PDF file</h3>
+                        <form class="aui">
+                            <div class="field-group" >
+                                <aui-toggle id="generateBarcode" label="Add the link to the issue as a QR code" checked></aui-toggle>
+                                <aui-label for="generateBarcode" >Add the link to the issue as a QR code</aui-label>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="messageExporting" class="hidden" style="display: flex;align-items: center;">
+                        <aui-spinner size="large"></aui-spinner>
+                        <p style="padding-left:40px">Export in progress...</p>
+                    </div>
+                    <div id="messageDone" class="hidden aui-message aui-message-success">
+                        <p class="title">
+                            <strong>Export finished</strong>
+                        </p>
+                        Your file will be available for <b id="shareTime"></b>. You can also share <a id="downloadLink">download</a> link
+                        <b id="timeel"></b>
+                    </div>
+                    <div id="messageError" class="hidden aui-message aui-message-error">
+                        <p class="title">
+                            <strong>Error</strong>
+                        </p>
+                        <p id="messageErrorText">Error occured</p>
+                    </div>
+
+                </section>
+            </div>
+        </div>
+        <footer id="footer" role="contentinfo">
+            <div class="aui-group">
+                <div class="aui-item">
+
+                </div>
+                <div class="aui-item" style="padding-top: 25px;float: right;margin-right: 25px;">
+
+                    <button class="aui-button aui-button-primary" id="button-export">Export<span id="glyph" class="aui-icon aui-icon-small aui-iconfont-export" style="margin-left: 10px;"></span></button>
+                    <button class="aui-button aui-button-primary hidden" id="button-download">Download<span class="aui-icon aui-icon-small aui-iconfont-arrow-down-circle" style="margin-left: 10px;"></span></button>
+                    <button class="aui-button aui-button-secondary" id="button-close">Close</button>
+                    <button class="aui-button aui-button-secondary hidden" id="button-temp">temp</button>
+                </div>
+            </div>
+        </footer>
+    </section>
+    <div class="footer">
+        Powered by <a href="https://products.aspose.cloud/pdf" target="_blank">Aspose.PDF for Cloud</a>, <a href="https://products.aspose.cloud/barcode" target="_blank">Aspose.Barcode for Cloud</a>
+    </div>
+</body>
+</html>

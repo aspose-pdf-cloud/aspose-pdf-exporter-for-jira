@@ -8,6 +8,7 @@ using Aspose.Cloud.Marketplace.Common;
 using Aspose.Cloud.Marketplace.Report;
 using Aspose.Cloud.Marketplace.Services.Model.Elasticsearch;
 using Aspose.Pdf.Cloud.Sdk.Api;
+using Aspose.BarCode.Cloud.Sdk.Interfaces;
 using Moq;
 
 namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter.Tests

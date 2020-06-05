@@ -83,6 +83,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
                     , configExpression.Get("Elasticsearch:AccesslogIndex", "accesslog-{DateTime.Now.ToString(\"yyyy.MM.dd\")")
                     , setuplogIndexName: configExpression.Get("Elasticsearch:SetuplogIndex", "setuplog-{DateTime.Now.ToString(\"yyyy.MM.dd\")")
                     , apiId: configExpression.Get("Elasticsearch:apiId"), apiKey: configExpression.Get("Elasticsearch:apiKey")
+                    , username: configExpression.Get("Elasticsearch:Username"), password: configExpression.Get("Elasticsearch:Password")
                     , timeoutSeconds: 5
                     , debug: hostEnvironment.IsDevelopment());
             });

@@ -11,7 +11,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter.Services
     public interface IAppJiraCloudExporterCli : IAppCustomErrorReportingClient
     {
         ClientRegistration RegistrationData { get; set; }
-        IBarcodeApi BarcodeApi { get; }
+        Aspose.BarCode.Cloud.Sdk.Interfaces.IBarcodeApi BarcodeApi { get; }
         Aspose.Pdf.Cloud.Sdk.Api.IPdfApi PdfApi { get; }
 
         string AtlassianAppKey { get; }

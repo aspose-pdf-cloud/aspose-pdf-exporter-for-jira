@@ -7,6 +7,7 @@ using Aspose.Cloud.Marketplace.Report;
 using Aspose.Cloud.Marketplace.Services;
 using Aspose.Cloud.Marketplace.Services.Model.Elasticsearch;
 using Aspose.Pdf.Cloud.Sdk.Api;
+using Aspose.BarCode.Cloud.Sdk.Interfaces;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;

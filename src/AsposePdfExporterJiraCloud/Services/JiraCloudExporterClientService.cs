@@ -89,7 +89,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter.Services
 
         public Aspose.Pdf.Cloud.Sdk.Api.IPdfApi PdfApi => _pdfApi ??= new Aspose.Pdf.Cloud.Sdk.Api.PdfApi(_pdfConfig);
         
-        public Aspose.BarCode.Cloud.Sdk.Interfaces.IBarcodeApi BarcodeApi => _barcodeApi = new Aspose.BarCode.Cloud.Sdk.Api.BarcodeApi(_barcodeConfig);
+        public Aspose.BarCode.Cloud.Sdk.Interfaces.IBarcodeApi BarcodeApi => _barcodeApi ??= new Aspose.BarCode.Cloud.Sdk.Api.BarcodeApi(_barcodeConfig);
         
         public ValueTuple<int, string, string, byte[]> ErrorResponseInfo(Exception ex)
         {

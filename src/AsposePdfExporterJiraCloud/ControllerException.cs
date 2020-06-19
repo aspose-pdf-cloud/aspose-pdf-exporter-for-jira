@@ -18,7 +18,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
             if (null == ex)
                 return code;
             if (ex is Aspose.Pdf.Cloud.Sdk.Client.ApiException pex) code = (HttpStatusCode) pex.ErrorCode;
-            //else if (ex is Aspose.BarCode.Cloud.Sdk.ApiException bex) code = (HttpStatusCode)bex.ErrorCode;
+            //else if (ex is Aspose.BarCode.Cloud.Sdk.Api. .ApiException bex) code = (HttpStatusCode)bex.ErrorCode;
             return code;
         }
     }

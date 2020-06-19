@@ -58,8 +58,10 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
                 new BasePathReplacementService(Configuration.GetValue<string>("Settings:BaseAppUrl")));
             
             IConfigurationExpression configurationExpression = new ConfigurationExpression(Configuration);
+            string connectionString = configurationExpression.Get("ConnectionStrings:DefaultConnection");
+
             services.AddDbContext<DbContext.DatabaseContext>(options =>
-                options.UseNpgsql(configurationExpression.Get("ConnectionStrings:DefaultConnection")));
+                options.UseNpgsql(connectionString));
 
             //Create application service
             services.AddScoped<Services.IAppJiraCloudExporterCli>(provider => {
@@ -101,7 +103,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
                 })
                 .AddRazorRuntimeCompilation();
 
-            services.AddHealthChecks().AddNpgSql(npgsqlConnectionString: Configuration.GetConnectionString("DefaultConnection"));
+            services.AddHealthChecks().AddNpgSql(npgsqlConnectionString: connectionString);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -159,6 +161,20 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
             if (Configuration.GetValue("Settings:UseExceptionMiddleware", true))
                 app.UseMiddleware<StoreExceptionHandlingMiddleware<Services.IAppJiraCloudExporterCli>>();
 
+            app.UseHealthChecks("/status", new HealthCheckOptions()
+            {
+                ResponseWriter = async (context, report) =>
+                {
+                    context.Response.ContentType = "application/json";
+                    string result = "Healthy";
+                    switch (report.Status)
+                    {
+                        case Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy: result = "Failure"; break;
+                        case Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded: result = "Degraded"; break;
+                    }
+                    await context.Response.WriteAsync(result);
+                }
+            });
 
             // Executes the endpoint that was selected by routing.
             app.UseEndpoints(endpoints =>
@@ -186,6 +202,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
                         ))
                     );
                 });
+
                 endpoints.MapGet("config", async context =>
                 {
                     await context.Response.WriteAsync(
@@ -200,20 +217,7 @@ namespace Aspose.Cloud.Marketplace.App.JiraCloud.Pdf.Exporter
                 endpoints.MapFallbackToFile("index.html");
             });
 
-            app.UseHealthChecks("/status", new HealthCheckOptions()
-            {
-                ResponseWriter = async (context, report) =>
-                {
-                    context.Response.ContentType = "application/json";
-                    string result = "Healthy";
-                    switch(report.Status)
-                    {
-                        case Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy: result = "Failure";break;
-                        case Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Degraded: result = "Degraded"; break;
-                    }
-                    await context.Response.WriteAsync(result);
-                }
-            });
+            
         }
 
         internal void CheckConfig(IConfiguration config)
